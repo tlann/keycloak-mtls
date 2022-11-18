@@ -12,7 +12,7 @@
         KC_HTTPS_KEY_STORE_PASSWORD: changeit
         KC_HTTPS_TRUST_STORE_FILE: /genCerts/truststore.jks
         KC_HTTPS_TRUST_STORE_PASSWORD: changeit
-        HTTPS_CLIENT_AUTH: request
+        HTTPS_CLIENT_AUTH: require
       ports:
         - 8080:8080
         - 8443:8443
