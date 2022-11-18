@@ -1,0 +1,10 @@
+*.*~
+genCerts/
+*.pem
+*.cer
+*.srl
+*.txt
+*.attr
+*.old
+*.p12
+*.csr
