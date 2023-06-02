@@ -1,21 +1,29 @@
   services:
     keycloak:
-      image: quay.io/keycloak/keycloak:latest
+      image: quay.io/keycloak/keycloak:20.0.2
       command: [ "start-dev" ]
       environment:
         JAVA_OPTS_APPEND: "-Dcom.redhat.fips=false"
         KC_HOSTNAME_STRICT: "false"
         KEYCLOAK_ADMIN: admin
         KEYCLOAK_ADMIN_PASSWORD: admin
-        KC_LOG_LEVEL: info,org.infinispan:error,org.hibernate:warn
-        KC_HTTPS_KEY_STORE_FILE: /genCerts/server-keystore.jks
+        KC_LOG_LEVEL: info,org.infinispan:error,org.hibernate:warn,org.keycloak.authentication:trace
+        KC_HTTPS_KEY_STORE_FILE: /genCerts/keystore.jks
         KC_HTTPS_KEY_STORE_PASSWORD: changeit
         KC_HTTPS_TRUST_STORE_FILE: /genCerts/truststore.jks
+        KC_SPI_TRUSTSTORE_FILE_FILE: /genCerts/truststore.jks
+        KC_SPI_TRUSTSTORE_FILE_PASSWORD: changeit
         KC_HTTPS_TRUST_STORE_PASSWORD: changeit
-        HTTPS_CLIENT_AUTH: require
+        KC_SPI_TRUSTSTORE_FILE_HOSTNAME_VERIFICATION_POLICY: ANY
+        HTTPS_CLIENT_AUTH: request
+        KC_HTTPS_PROTOCOLS: TLSv1.2,TLSv1.3
+        KC_FEATURES_DISABLED: admin2
+        KC_FEATURES: admin, admin1
+        KC_SPI_IMPORT_SINGLE_FILE_FILE: 
       ports:
         - 8080:8080
         - 8443:8443
       volumes:
         - ./genCerts:/genCerts
+        - ./realm:/opt/keycloak/data/import
 
