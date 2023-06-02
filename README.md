@@ -1,6 +1,6 @@
 # keycloak-mtls
 
-An example of Keycloak client mtls used to troubleshoot.  
+An example of Keycloak client mtls used to troubleshoot.  Take a look at the github discussion here https://github.com/keycloak/keycloak/discussions/15580#discussioncomment-4405291
 
 ## Generate public and private Keys ##
 The directory ./certs contains the script ./makeCerts.  Run `./makeCerts.sh <ip>` to generate self signed root, server, and client keys.  The script adds the keys to a keystore and truststore that get copied to the directory ./genCerts.  The docker compose file mounts the directory in a volume to be used by keycloak.  
