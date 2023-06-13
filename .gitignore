@@ -8,3 +8,6 @@ genCerts/
 *.old
 *.p12
 *.csr
+*.crt
+*.key
+*.jks
