@@ -2,4 +2,4 @@ authorityKeyIdentifier=keyid,issuer
 basicConstraints=CA:FALSE
 subjectAltName = @alt_names
 [alt_names]
-DNS.1 = vdi-rh-21
+DNS.1 = myHost
