@@ -1,27 +1,23 @@
   services:
     keycloak:
       image: quay.io/keycloak/keycloak:20.0.2
-#      entrypoint: "start-dev"
       command: 
         - "start-dev"
         - "--https-client-auth=request"
-        - "--spi-truststore-file-file=/genCerts/truststore.jks"
-        - "--spi-truststore-file-password=changeit"
-        - "--spi-truststore-file-hostname-verification-policy=WILDCARD"
-#        - "--https-trust-store-file=/genCerts/truststore.jks"
-#        - "--https-trust-store-password=changeit"
+        - "--https-key-store-file=/genCerts/keystore.jks"
+        - "--https-key-store-password=changeit"
+        - "--https-trust-store-file=/genCerts/truststore.jks"
+        - "--https-trust-store-password=changeit"
         - "--https-protocols=TLSv1.2,TLSv1.3"
+        - "--import-realm"
       environment:
         JAVA_OPTS_APPEND: "-Dcom.redhat.fips=false"
         KC_HOSTNAME_STRICT: "false"
         KEYCLOAK_ADMIN: admin
         KEYCLOAK_ADMIN_PASSWORD: admin
         KC_LOG_LEVEL: info,org.keycloak.authentication:trace
-        KC_HTTPS_KEY_STORE_FILE: /genCerts/keystore.jks
-        KC_HTTPS_KEY_STORE_PASSWORD: changeit
-        KC_SPI_TRUSTSTORE_FILE_HOSTNAME_VERIFICATION_POLICY: ANY
         KC_FEATURES_DISABLED: admin2
-        KC_FEATURES: admin, admin1
+        KC_FEATURES: admin
         KC_SPI_IMPORT_SINGLE_FILE_FILE: x509-realm-export.json
       ports:
         - 8080:8080
