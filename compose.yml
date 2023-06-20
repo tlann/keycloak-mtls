@@ -10,6 +10,9 @@
         - "--https-trust-store-password=changeit"
         - "--https-protocols=TLSv1.2,TLSv1.3"
         - "--import-realm"
+        - "--spi-truststore-file-file=/genCerts/truststore.jks"
+        - "--spi-truststore-file-password=changeit"
+        - "--spi-truststore-file-hostname-verification-policy=ANY"
       environment:
         JAVA_OPTS_APPEND: "-Dcom.redhat.fips=false"
         KC_HOSTNAME_STRICT: "false"
